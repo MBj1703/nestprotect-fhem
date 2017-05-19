@@ -31,22 +31,22 @@ Es werden Events für online, last_seen, battery, co_status und smoke_status erz
 
 Folgende Events sind möglich:
 
-battery
-ok   Battery level ok
-replace   Battery level low, should be replaced
+battery:
+ok=Battery level ok
+replace=Battery level low, should be replaced
 
-co_status
-ok   Normal operation
-warning   Detection of rising CO levels
-emergency   CO levels too high, user should exit the home
+co_status:
+ok=Normal operation
+warning=Detection of rising CO levels
+emergency=CO levels too high, user should exit the home
 
-smoke_status
-ok   Normal operation
-warning   Detection of rising smoke levels
-emergency   Smoke levels too high, user should exit the home
+smoke_status:
+ok=Normal operation
+warning=Detection of rising smoke levels
+emergency=Smoke levels too high, user should exit the home
 
-online
-1     NetsProtect ist online/hat Internet
-0     NetsProtect ist offline/kein Internet
+online:
+1=NetsProtect ist online/hat Internet
+0=NetsProtect ist offline/kein Internet
 
 Benutzung ohne Gewähr!

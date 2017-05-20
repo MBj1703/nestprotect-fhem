@@ -1,4 +1,4 @@
-# $Id: 39_nestprotect.pm 13 2017-05-18 18:10:00Z mbj1703 $
+# $Id: 39_nestprotect.pm 14 2017-05-20 21:30:00Z mitch $
 # 
 # vielen Dank für die großartige Hilfe von CoolTux, amenomade, dev0 und Thorsten Pferdekaemper
 # ohne euch hätte ich das nie hinbekommen
@@ -256,3 +256,120 @@ nestprotect_Attr($$$)
 }        
 
 1;
+
+
+=pod
+=item summary    module for nestprotect smoke & co detector
+=item summary_DE Modul für NestProtect Rauch und CO Warner
+=begin html
+
+<a name="nestprotect"></a>
+<h3>nestprotect</h3>
+<ul>
+  Defines a device to integrate a nestprotect detector into fhem.<br><br>
+
+  Notes:
+  <ul>
+    <li>JSON has to be installed on the FHEM host.</li>
+    <li>Perl Module Encode has to be installed on the fhem host. (Ubuntu: liblatex-encode-perl)</li></ul><br><br>
+    You need a developer account at nest (developers.nest.com)<br>
+    <ul><li>in the dev account create a product</li>
+    <li>leave the Redirect URI empty</li>
+    <li>give permission to smoke+co alarm</li></ul>
+    <br>
+    Now you can select your product. At the product view you will find your Product ID, the Product Secret and the Authorization URL.<br>
+    The Product ID and the Product Secret is needed later as attribut for the device.<br><br>
+    
+    Next you have to create your PIN. Just copy your Authorization URL into your Browser<br>
+    Now you will get a site "Works with Nest" where you have to click "Annehmen" and you will get your PIN finaly<br><br>
+    
+    After defining your device you need to set ProductID and ProductSecret Attributs first!<br>
+    Next you need to "set token" to get a valid token from the API<br><br>
+    
+    The module will create a additional at device ($name.Poll) which runs "get update" every 5 minutes.<br>
+    This is a workaround, because Interval is not implemented yet.<br>
+    
+    <br><br>
+
+  <a name="nestprotect_Define"></a>
+  <b>Define</b>
+  <ul>
+    <code>define &lt;name&gt; nestprotect &lt;PIN&gt;</code><br>
+    <br>
+
+    Defines a nestprotect device.<br><br>
+
+    Examples:
+    <ul>
+      <code>define NestWohnzimmer nestprotect ABCDEFG</code><br>
+    </ul>
+  </ul><br>
+
+  <a name="nestprotect_Readings"></a>
+  <b>Readings</b>
+  <ul>
+    <li>battery<br>
+      the battery level. (ok/replace)</li>
+    <li>co_status<br>
+      the CO level. (ok/warning/emergency)</li>
+    <li>device_id<br>
+      your Device ID.</li>
+    <li>language<br>
+      Your language in the nestprotect.</li>
+    <li>last_seen<br>
+      last connection to nest cloud.</li>
+    <li>name<br>
+      the name of your nestprotect.</li>
+    <li>online<br>
+      nestprotect is connected to internet. (1/0)</li>
+    <li>smoke_status<br>
+      the smoke level. (ok/warning/emergency)</li>
+    <li>softwareversion<br>
+      nestprotect software version. (1/0)</li>
+    <li>token<br>
+      your API token.</li>
+    <li>token_expire_in<br>
+      your APi token expire time in seconds. (you need to renew after this time)</li>
+  </ul><br>
+
+  <a name="harmony_Internals"></a>
+  <b>Internals</b>
+  <ul>
+    <li>PIN<br>
+      your PIN to generate the token.</li>
+  </ul><br>
+
+
+  <a name="harmony_Set"></a>
+  <b>Set</b>
+  <ul>
+    <li>update<br>
+      request an update at the nest API to refresh readings</li>
+      
+  </ul><br><br>
+
+  <a name="harmony_Get"></a>
+  <b>Get</b>
+  <ul>
+    <li>token<br>
+      request your token fom the nest API.<br>
+      this is needed only once after creating the device.</li>
+  </ul><br><br>
+
+
+  <a name="nestprotect_Attr"></a>
+  <b>Attributes</b>
+  <ul>
+    <li>Interval<br>
+    interval time in seconds to refresh readings (set update) -> not implemented yet</li>
+    <li>ProductID<br>
+    please enter your Product ID form your product at the dev account</li>
+    <li>ProductSecret<br>
+    please enter your ProductSecret form your product at the dev account</li>
+    <li>disable<br>
+    1 = disable the module</li>
+  </ul>
+</ul>
+
+=end html
+=cut

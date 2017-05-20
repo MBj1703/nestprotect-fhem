@@ -4,9 +4,10 @@ Das Modul einfach in den ./FHEM Ordner kopieren, evtl. Rechte anpassen und dann 
 
 Um das Modul zu nutzen, sind ein paar Dinge im Vorfeld durchzuführen:
 
-1. einen Developer Account bei Nest anlegen (developers.nest.com)
-2. im Dev Account ein Produkt anlegen und Redirect URI leer lassen
-3. Permissions auf Smoke+CO Alarm geben
+1. Perl Module JSON, Time::HiRes und Enocde werden benötigt (falls noch nicht vorhanden, bitte installieren)
+2. einen Developer Account bei Nest anlegen (developers.nest.com)
+3. im Dev Account ein Produkt anlegen und [b]Redirect URI leer lassen[/b]
+4. Permissions auf Smoke+CO Alarm geben
 
 Danach könnt ihr auf euer Produkt klicken und bekommt dort die Product ID, das Product Secret und die Authorization URL.
 Die Product ID und das Product Secret brauchen wir später nochmal.
